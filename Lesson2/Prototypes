@@ -1,1 +1,423 @@
 
+// function assignProperty(object, property, value) {
+//   if (object === null) {
+//     return;
+//   } else if (object.hasOwnProperty(property)) {
+//     object[property] = value;
+//   } else {
+//     assignProperty(Object.getPrototypeOf(object), property, value);
+//   }
+// }
+
+// let fooA = { bar: 1 };
+// let fooB = Object.create(fooA);
+// let fooC = Object.create(fooB);
+
+// assignProperty(fooC, "bar", 2);
+// console.log(fooA.bar); // 2
+// console.log(fooC.bar); // 2
+
+// assignProperty(fooC, "qux", 3);
+// console.log(fooA.qux); // undefined
+// console.log(fooC.qux); // undefined
+// console.log(fooA.hasOwnProperty("qux")); // false
+// console.log(fooC.hasOwnProperty("qux")); // false
+
+
+// NOTE: Run this code from a file; don't use the REPL
+
+// bar();
+// function bar() {
+//   console.log("this is bar");
+// }
+
+// foo();
+// const foo = function() {
+//   console.log("this is foo");
+// };
+
+// console.log(global.isNaN);      // [Function: isNaN]
+// console.log(global.Infinity);   // Infinity
+
+// let obj = {
+//   a: 2,
+//   b: 3,
+// };
+
+// function foo() {
+//   return this.a + this.b;
+// }
+
+// let bar = foo.bind(obj);
+
+// console.log(foo());
+// console.log(bar());
+
+// let positivity = {
+//   message: 'JavaScript makes sense!',
+// };
+
+// let negativity = {
+//   message: 'JavaScript makes no sense!',
+// };
+
+// function foo() {
+//   console.log(this.message);
+// }
+
+// let bar = foo.bind(positivity);
+
+// negativity.logMessage = bar;
+// negativity.logMessage();
+
+// let obj = {
+//   a: 'Amazebulous!',
+// };
+// let otherObj = {
+//   a: "That's not a real word!",
+// };
+
+// function foo() {
+//   console.log(this.a);
+// }
+
+// let bar = foo.bind(obj);
+
+// bar.call(otherObj);
+
+// let obj = {
+//   a: 5,
+
+//   foo: () => {
+//     console.log(this.a);
+//   },
+// };
+
+// obj.foo(); // => undefined
+
+// let obj = {
+//   a: 'hello',
+//   b: 'world',
+//   foo: function() {
+//     let bar = () => {
+//       console.log(this.a + ' ' + this.b);
+//     }
+
+//     // some code
+//     bar();
+
+//     // some more code
+//     bar();
+
+//     // still more code
+//   }
+// };
+
+// obj.foo();
+// // => hello world
+// // => hello world
+
+// let turk = {
+//   firstName: 'Christopher',
+//   lastName: 'Turk',
+//   occupation: 'Surgeon',
+
+//   getDescription() {
+//     return this.firstName + ' ' + this.lastName + ' is a '
+//                                 + this.occupation + '.';
+//   }
+// };
+
+// let getTurkDescription = turk.getDescription.bind(turk);
+
+// function logReturnVal(func) {
+//   let returnVal = func();
+//   console.log(returnVal);
+// }
+
+// logReturnVal(getTurkDescription);
+
+// const TESgames = {
+//   titles: ['Arena', 'Daggerfall', 'Morrowind', 'Oblivion', 'Skyrim'],
+//   seriesTitle: 'The Elder Scrolls',
+//   listGames: function() {
+//     // let self = this;
+//     this.titles.forEach(function(title) {
+//       console.log(this.seriesTitle + ': ' + title);
+//     }, this);
+//   }
+// };
+
+// TESgames.listGames();
+
+// const TESgames = {
+//   titles: ['Arena', 'Daggerfall', 'Morrowind', 'Oblivion', 'Skyrim'],
+//   seriesTitle: 'The Elder Scrolls',
+//   listGames: function() {
+//     this.titles.forEach(title => {
+//       console.log(this.seriesTitle + ': ' + title);
+//     });
+//   }
+// };
+
+// TESgames.listGames();
+
+// let foo = {
+//   a: 0,
+//   incrementA: function() {
+//     let increment = () => {
+//       this.a += 1;
+//     }
+
+//     increment();
+//   }
+// };
+
+// foo.incrementA();
+// foo.incrementA();
+// foo.incrementA();
+// console.log(foo.a);
+
+// let foo = {
+//   bar: 42,
+//   qux() {
+//     console.log("Pudding");
+//   },
+// };
+
+// let baz = Object.create(foo);
+// console.log(baz);
+// baz.qux()
+
+// function sum(number1, number2) {
+//   return number1 + number2;
+// }
+
+// const sum = function(number1, number2) {
+//   return number1 + number2;
+// };
+
+// let sum = (number1, number2) => {
+//   number1 + number2;
+// };
+
+// const sum = (number1, number2) => number1 + number2;
+
+// let sum = (number1, number2) => {
+//   return number1 + number2;
+// };
+
+// console.log(sum(1, 2));
+
+// (function sum(number1, number2) {
+//   return number1 + number2;
+// });
+
+// console.log(sum(3, 4));
+
+// console.log(sum(3, 4));
+
+// const sum = (number1, number2) => number1 + number2;
+
+// console.log(sum(3, 4));
+
+// const sum = function(number1, number2) {
+//   let total = number1 + number2;
+//   return total;
+// };
+
+// console.log(sum(3, 4));
+
+// function sum(number1, number2) {
+//   return number1 + number2;
+// }
+
+// const OPERATIONS = {
+//   '+': (num1, num2) => num1 + num2,
+//   '-': (num1, num2) => num1 - num2,
+//   '*': (num1, num2) => num1 * num2,
+//   '/': (num1, num2) => num1 / num2,
+// };
+
+// let getOperation = operation => OPERATIONS[operation];
+
+// let compute = function(operation, num1, num2) {
+//   return operation(num1, num2);
+// };
+
+// console.log(compute(getOperation('+'), 5, 9) === 14);
+
+// global.foo = 5;
+// if (isFinite(foo)) {
+//   let bar = 3;
+//   xyz = 5;
+//   console.log(bar);
+// }
+
+// console.log(global.log === log);
+
+// function foo() {
+//   return this;
+// }
+
+// console.log(foo());
+
+// let obj = {
+//   foo() {
+//     return this;
+//   },
+// };
+
+// console.log(obj.foo());
+
+// let obj = {
+//   foo() {
+//     return this;
+//   },
+// };
+
+// let foo = obj.foo;
+// console.log(foo());
+
+// function bar() {
+//   console.log('good morning');
+// }
+
+// global.inner = {
+//   bar() {
+//     console.log('good afternoon');
+//   },
+// };
+
+// let obj = {
+//   inner: {
+//     bar() {
+//       console.log('good night');
+//     },
+
+//     foo() {
+//       bar();
+//     },
+//   },
+
+//   bar() {
+//     console.log('wake up');
+//   },
+
+//   foo() {
+//     this.inner.bar();
+//     inner.bar();
+//     bar();
+//   }
+// };
+
+// console.log(obj.foo());
+
+// function bar() {
+//   console.log('good morning');
+// }
+
+// global.inner = {
+//   bar() {
+//     console.log('good afternoon');
+//   },
+// };
+
+// let obj = {
+//   inner: {
+//     bar() {
+//       console.log('good night');
+//     },
+
+//     foo() {
+//       bar();
+//     },
+//   },
+
+//   bar() {
+//     console.log('wake up');
+//   },
+
+//   foo() {
+//     this.inner.bar();
+//     inner.bar();
+//     bar();
+//   }
+// };
+
+// let foo = function() {
+//   console.log('go to sleep');
+// }
+
+// function go(foo) {
+//   foo();
+// }
+
+// console.log(go(obj.foo));
+
+// let cat = {
+//   name: 'Pudding',
+//   colors: 'black and white',
+//   identify() {
+//     let report = function() {
+//       console.log(`${this.name} is a ${this.colors} cat.`);
+//     };
+//     report();
+//   },
+// };
+
+// cat.identify();
+// // Expected output: Pudding is a black and white cat.
+
+// let logResult = function(func) {
+//   let result = func();
+//   console.log(result);
+//   return result;
+// };
+
+// let foo = function() {
+//   let sue = {
+//     name: 'Sue Perkins',
+//     age: 37,
+//     myAge() {
+//       return `${this.name} is ${this.age} years old.`;
+//     },
+//   };
+//   logResult(sue.myAge);
+// };
+
+// foo();
+// // Expected output: Sue Perkins is 37 years old.
+
+// let cats = {
+//   names: [ 'Butterscotch', 'Pudding', 'Fluffy' ],
+//   foo() {
+//     [1, 2, 3].forEach(function(number) {
+//       console.log(`${number}: ${this.names[number - 1]}`);
+//     });
+//   },
+// };
+
+// cats.foo();
+// // Expected output:
+// // 1: Butterscotch
+// // 2: Pudding
+// // 3: Fluffy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
