@@ -1,9 +1,10 @@
 {
   "dependencies": {
     "node": "^18.7.0",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.20.0"
+    "eslint": "^8.21.0"
   }
 }
